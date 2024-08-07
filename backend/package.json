@@ -1,24 +1,10 @@
 {
-  "scripts": {
-    "db:generate": "bun drizzle-kit generate",
-    "db:migrate": "bun drizzle-kit migrate",
-    "lintf": "eslint . --fix",
-    "deploy": "bun wrangler deploy",
-    "dev": "bun wrangler dev"
-  },
   "dependencies": {
-    "@antfu/eslint-config": "^2.24.1",
-    "@types/bun": "^1.1.6",
-    "bun-types": "^1.1.21",
-    "dotenv": "^16.4.5",
     "drizzle-orm": "^0.32.2",
     "elysia": "^1.1.5",
-    "typedi": "^0.10.0",
-    "wrangler": "^3.69.1"
+    "typedi": "^0.10.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240806.0",
-    "drizzle-kit": "^0.23.2",
-    "typescript": "^5.5.4"
+    "@cloudflare/workers-types": "^4.20240806.0"
   }
 }

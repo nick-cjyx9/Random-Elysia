@@ -3,8 +3,8 @@ import 'dotenv/config'
 import { type Config, defineConfig } from 'drizzle-kit'
 
 export default defineConfig({
-  schema: './src/db/schema.ts',
-  out: './src/db/migration',
+  schema: './backend/src/db/schema.ts',
+  out: './backend/src/db/migration',
   dialect: 'sqlite',
   dbCredentials: {
     accountId: process.env.ACCOUNT_ID,

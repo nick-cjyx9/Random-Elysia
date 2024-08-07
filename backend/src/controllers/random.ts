@@ -2,7 +2,7 @@ import { Elysia } from 'elysia'
 import { getDB } from '../utils/typedi'
 import * as schema from '../db/schema'
 
-export function handleGetRandom() {
+export default function handleGetRandom() {
   return new Elysia({ aot: false }).get('/random_by_weight', async () => {
     const db = getDB()
     // forgive my writing this shit algorithm

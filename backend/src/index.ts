@@ -1,25 +1,13 @@
 import Container from 'typedi'
 import { Elysia } from 'elysia'
 import { drizzle } from 'drizzle-orm/d1'
-import type { DrizzleD1Database } from 'drizzle-orm/d1'
 import * as schema from './db/schema'
 import handleUpload from './controllers/upload'
 import handleItem from './controllers/item'
-import { handleGetRandom } from './controllers/random'
+import handleGetRandom from './controllers/random'
+import handleGetTags from './controllers/tag'
+import type { Env } from './utils/typedi'
 // import { basicAuth } from '@eelkevdbos/elysia-basic-auth'
-
-export type DB = DrizzleD1Database<typeof import('./db/schema')>
-
-export interface Env {
-  DB: D1Database
-  ACCOUNT_ID: string
-  API_KEY: string
-  SMMS_TOKEN: string
-  // BASIC_AUTH_CREDENTIALS: {
-  //   username: string
-  //   password: string
-  // }[]
-}
 
 export default {
   async fetch(request: Request, env: Env) {
@@ -34,6 +22,7 @@ export default {
       .use(handleItem())
       .use(handleUpload())
       .use(handleGetRandom())
+      .use(handleGetTags())
       .handle(request)
   },
   // async scheduled() // WIP

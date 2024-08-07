@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "db:generate": "bun drizzle-kit generate",
+    "db:migrate": "bun drizzle-kit migrate",
+    "db:studio": "bun drizzle-kit studio",
+    "lintf": "eslint . --fix",
+    "backend:deploy": "bun wrangler deploy",
+    "backend:dev": "bun wrangler dev",
+    "frontend:deploy": "cd ./frontend && pnpm run build && wrangler pages deploy ./dist",
+    "frontend:dev": "cd ./frontend && pnpm run build && wrangler pages dev ./dist"
+  },
+  "dependencies": {
+    "bun-types": "^1.1.21",
+    "drizzle-orm": "^0.32.2"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.24.1",
+    "@cloudflare/workers-types": "^4.20240806.0",
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "^0.23.2",
+    "lint-staged": "^15.2.8",
+    "typescript": "^5.5.4",
+    "wrangler": "^3.69.1"
+  }
+}

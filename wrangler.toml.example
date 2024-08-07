@@ -7,9 +7,11 @@ node_compat = true
 [[d1_databases]]
 binding = "DB" # i.e. available in your Worker on env.DB
 database_name = "elysia"
-database_id = "b38b1ff3-16a8-4fa7-a63f-254e756e653f"
+database_id = ""
+
+[ai]
+binding = "AI"
 
 [vars]
-API_KEY = ""
 SMMS_TOKEN = ""
 ACCOUNT_ID = ""
