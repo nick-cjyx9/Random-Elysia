@@ -1,3 +1,7 @@
+<img src="./.readme/img/hero.jpg" />
+
+----------
+
 # Random Elysia
 
 Elysia.js + Drizzle ORM + Cloudflare + Vue.js full-stack template.
