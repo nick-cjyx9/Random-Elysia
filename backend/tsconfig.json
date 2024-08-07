@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es2021" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "jsx": "react-jsx" /* Specify what JSX code is generated. */,
+    "lib": [
+      "es2021"
+    ] /* Specify a set of bundled library declaration files that describe the target runtime environment. */,
+    "module": "ESNext" /* Specify what module code is generated. */,
+    "moduleResolution": "Bundler" /* Specify how TypeScript looks up a file from a given module specifier. */,
+    "resolveJsonModule": true /* Enable importing .json files */,
+    "types": [
+      "@cloudflare/workers-types",
+      "bun-types"
+    ] /* Specify type package names to be included without being referenced in a source file. */,
+    "allowJs": true /* Allow JavaScript files to be a part of your program. Use the `checkJS` option to get errors from these files. */,
+    "strict": true /* Enable all strict type-checking options. */,
+    "noUncheckedIndexedAccess": true, /* Ensure that casing is correct in imports. */
+    "noEmit": true /* Disable emitting files from a compilation. */,
+    "allowSyntheticDefaultImports": true /* Allow 'import x from y' when a module doesn't have a default export. */,
+    "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true /* Ensure that each file can be safely transpiled without relying on other imports. */,
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+  }
+}

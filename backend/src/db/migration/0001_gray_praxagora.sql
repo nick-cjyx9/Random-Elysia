@@ -1,0 +1,1 @@
+ALTER TABLE `images` ADD `del_link` text NOT NULL;
