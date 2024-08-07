@@ -71,7 +71,15 @@ You can debug the prompt in the [Cloudflare Multi-model Playground](https://mult
 
 ### Bun + Elysia.js
 
-Novel and popular js runtime. All is well, and `bun add` is too slow that I can enjoy my coffee during
+Novel and popular js runtime. All is well, but `bun add` is too slow that I can enjoy a cup of coffee during
  installing deps.
 
 ![slow-bun](./.readme/img/slow-bun.JPG)
+
+### Show your Support
+
+Give a ⭐️ if this project helped you!
+
+----------------------
+
+我永远喜欢爱莉希雅！

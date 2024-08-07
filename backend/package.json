@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@elysiajs/cors": "^1.1.0",
     "drizzle-orm": "^0.32.2",
     "elysia": "^1.1.5",
     "typedi": "^0.10.0"

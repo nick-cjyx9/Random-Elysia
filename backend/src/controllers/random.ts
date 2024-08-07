@@ -6,7 +6,7 @@ export default function handleGetRandom() {
   return new Elysia({ aot: false }).get('/random_by_weight', async () => {
     const db = getDB()
     // forgive my writing this shit algorithm
-    const images = await db.select().from(schema.images)
+    const images = await db.select().from(schema.images).all()
     const ranked_images: any[] = []
     let min_rank = Infinity
     // count the rank
@@ -32,7 +32,7 @@ export default function handleGetRandom() {
   })
     .get('/random', async () => {
       const db = getDB()
-      const images = await db.select().from(schema.images)
+      const images = await db.select().from(schema.images).all()
       const randint = Math.floor(Math.random() * images.length)
       return images[randint]
     })
