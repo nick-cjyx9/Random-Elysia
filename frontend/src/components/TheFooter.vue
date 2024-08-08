@@ -7,7 +7,7 @@
     <a
       i-carbon-logo-github icon-btn
       rel="noreferrer"
-      href="https://github.com/antfu-collective/vitesse-lite"
+      href="https://github.com/nick-cjyx9/Random-Elysia"
       target="_blank"
       title="GitHub"
     />
