@@ -46,9 +46,9 @@ onMounted(async () => {
         Elysia
       </font>
     </h1>
-    <a href="/" hover:text-pink-4>🚀 click here to weight-added ver</a>
+    <a href="/dev" hover:text-pink-4>🚀 click here to weight-added ver</a>
     <div v-if="img_link">
-      <img :src="img_link" alt="random elysia" max-w-screen-sm border-1 border-slate-5 rounded-md md:max-w-screen-md>
+      <img :src="img_link" alt="random elysia" border-1 border-slate-5 rounded-md md:max-w-screen-md>
       <div h-4 w-full py-1 font-mono>
         <p v-if="tags" float-left>
           Tags: {{ tags.map(tag => `#${tag.trim()}`).join(' ') }}
