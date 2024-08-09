@@ -3,9 +3,14 @@
 ----------
 
 # Random Elysia
-# Work in progress now!
 
 Elysia.js + Drizzle ORM + Cloudflare + Vue.js full-stack template, a webapp allows you to get a random Elysia artwork 🎶.
+
+## preview
+
+![random](./.readme/img/random.png)
+![manage](./.readme/img/manage.png)
+![upload](./.readme/img/upload.png)
 
 ## development
 
@@ -15,12 +20,6 @@ Elysia.js + Drizzle ORM + Cloudflare + Vue.js full-stack template, a webapp allo
 git clone https://github.com/nick-cjyx9/Random-Elysia.git
 cd Random-Elysia
 bun install
-# install dependencies for backend
-cd backend
-bun install
-# install dependencies for frontend
-cd ../frontend
-pnpm install
 ```
 
 ### Config
