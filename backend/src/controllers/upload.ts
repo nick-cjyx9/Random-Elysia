@@ -16,6 +16,7 @@ export default function handleUpload() {
         body: data,
       })
       const resp_data: any = await resp.json()
+      // https://doc.sm.ms/#api-Image-Upload
       return resp_data.data
     }, {
       body: t.Object({

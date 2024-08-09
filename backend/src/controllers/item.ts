@@ -27,9 +27,9 @@ export default function handleItem() {
         })
         .delete('/:id', async ({ params: { id } }) => {
           const del_item = await db.delete(images).where(eq(images.id, id)).returning()
-          if (del_item[0])
+          if (!del_item[0])
             return { success: false, message: 'The picture does not exist.' }
-          const resp = await fetch(del_item[0]!.del_link, {
+          const resp = await fetch(del_item[0].del_link, {
             headers: {
               Authorization: env.SMMS_TOKEN as string,
             },
