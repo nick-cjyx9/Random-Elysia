@@ -10,7 +10,7 @@ import App from './App.vue'
 
 // eslint-disable-next-line ts/ban-ts-comment
 // @ts-ignore
-export const client = treaty<Server>('https://random_elysia.cjyx9.workers.dev')
+export const client = treaty<Server>('https://random-elysia-api.nickchen.top')
 
 const app = createApp(App)
 const router = createRouter({
