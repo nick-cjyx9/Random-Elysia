@@ -22,9 +22,8 @@ export default function handleGetTags() {
         ],
         temperature: 0,
       })
-      // eslint-disable-next-line ts/ban-ts-comment
-      // @ts-ignore
-      return parsedTag.response
+      // @ts-expect-error cloudflare type error
+      return parsedTag.response as string
     }, {
       body: t.Object({
         image: t.File({ type: 'image', maxSize: '5m' }),

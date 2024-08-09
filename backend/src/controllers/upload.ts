@@ -20,7 +20,7 @@ export default function handleUpload() {
     }, {
       body: t.Object({
         // multipart/form-data: body typed as t.Object, and is 1 level deep with t.File
-        image: t.File({ type: 'image', maxSize: '5m' }),
+        image: t.File({ type: 'image', maxSize: '5m', maxItems: 1 }),
       }),
     })
 }

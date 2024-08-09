@@ -35,19 +35,20 @@ onMounted(async () => {
   likes.value = data?.likes
   dislikes.value = data?.dislikes
   time.value = data?.createdAt
-  tags.value = data?.tags?.split(',').filter(tag => tag !== '')
+  tags.value = data?.tags?.split(',').filter((tag: string) => tag !== '')
 })
 </script>
 
 <template>
-  <div flex flex-col items-center justify-center space-y-xl>
+  <div flex flex-col items-center justify-center space-y-4>
     <h1 text-size-4xl font-500 font-serif>
       Random <font text-pink-4>
         Elysia
       </font>
     </h1>
+    <a href="/" hover:text-pink-4>🚀 click here to weight-added ver</a>
     <div v-if="img_link">
-      <img :src="img_link" alt="random elysia" border-1 border-slate-5 rounded-md>
+      <img :src="img_link" alt="random elysia" max-w-screen-md border-1 border-slate-5 rounded-md>
       <div h-4 w-full py-1 font-mono>
         <p v-if="tags" float-left>
           Tags: {{ tags.map(tag => `#${tag.trim()}`).join(' ') }}
@@ -56,15 +57,15 @@ onMounted(async () => {
           Published at: {{ (new Date(time as string)).toLocaleDateString() }}
         </p>
       </div>
-      <div mt-10 text-size-lg space-x-lg>
+      <div mt-8 px-10 text-size-lg space-x-lg space-y-4>
         <button px-4 py-2 btn aria-label="like" @click="handleLike(id as number)">
-          ❤ Like {{ likes }}
+          👍 Like {{ likes }}
         </button>
         <button px-4 py-2 btn aria-label="dislike" @click="handleDislike(id as number)">
-          ☠️ Dislike {{ dislikes }}
+          👎 Dislike {{ dislikes }}
         </button>
         <button px-4 py-2 btn aria-label="refresh" @click="handleRefresh()">
-          🔁 Another pic
+          🔁 Another
         </button>
       </div>
     </div>

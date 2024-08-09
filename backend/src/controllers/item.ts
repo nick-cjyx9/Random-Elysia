@@ -9,8 +9,8 @@ export default function handleItem() {
       const db = getDB()
       const env = getEnv()
       return app
-        .post('/', async ({ body: { link, del_link, tags } }) => {
-          const new_item = await db.insert(images).values({ link, del_link, tags: tags.join(',') }).returning()
+        .post('/new', async ({ body: { link, del_link, tags } }) => {
+          const new_item = await db.insert(images).values({ link, del_link, tags: tags.join(','), likes: 0, dislikes: 0 }).returning()
           return {
             success: true,
             data: new_item[0],
@@ -22,7 +22,7 @@ export default function handleItem() {
             tags: t.Array(t.String()),
           }),
         })
-        .get('/', async () => {
+        .get('/getAll', async () => {
           return await db.select().from(images)
         })
         .delete('/:id', async ({ params: { id } }) => {
