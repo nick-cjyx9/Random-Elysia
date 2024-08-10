@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1722933018801,
-      "tag": "0000_smooth_warpath",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1722997395947,
-      "tag": "0001_gray_praxagora",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1723110180532,
-      "tag": "0002_silky_echo",
+      "when": 1723281335237,
+      "tag": "0000_fearless_hellion",
       "breakpoints": true
     }
   ]

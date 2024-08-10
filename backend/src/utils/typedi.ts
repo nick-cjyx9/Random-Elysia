@@ -6,10 +6,11 @@ export interface Env {
   AI: Ai
   ACCOUNT_ID: string
   SMMS_TOKEN: string
-  // BASIC_AUTH_CREDENTIALS: {
-  //   username: string
-  //   password: string
-  // }[]
+  CLIENT_ID: string
+  CLIENT_SECRET: string
+  BGM_CLIENT_ID: string
+  BGM_CLIENT_SECRET: string
+  JWT_SECRET: string
 }
 export const getEnv = () => Container.get<Env>('env')
 export const getDB = () => Container.get<DrizzleD1Database<typeof import('../db/schema')>>('DrizzleDB')
