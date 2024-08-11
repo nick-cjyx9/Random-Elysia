@@ -95,16 +95,16 @@ async function handleSubmit() {
       </div>
     </div>
   </div>
-  <div v-if="previewLink" flex flex-col items-center py-2 space-y-2>
+  <div v-if="!previewLink" flex flex-col items-center py-2 space-y-2>
     <h2 text-size-2xl font-serif>
       Step 2. Tag the image
     </h2>
     <img :src="previewLink" alt="preview" max-w-72 border-1 border-pink rounded>
-    <div max-w-screen-sm flex flex-col items-start overflow-auto>
-      <div float-left text-size-xl font-serif>
+    <div w-xs flex flex-col items-start>
+      <div w-full overflow-hidden text-ellipsis text-start text-nowrap text-size-xl font-serif>
         Link: &nbsp;&nbsp;&nbsp;{{ imageLink ? imageLink : 'Uploading...' }}
       </div>
-      <div float-left text-size-xl font-serif space-x-5>
+      <div text-size-xl font-serif space-x-5>
         Tags: <input
           v-model="tags" type="text" ml-3 border-b-2 border-b-slate bg-transparent outline-none
           focus:border-b-pink
