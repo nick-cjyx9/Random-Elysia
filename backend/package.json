@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "@bogeychan/elysia-oauth2": "^0.0.22",
     "@elysiajs/cors": "^1.1.0",

@@ -95,7 +95,7 @@ async function handleSubmit() {
             />
           </svg></i>
           <input id="file" type="file" @change="getFile($event)">
-          上传图片
+          Upload Image(nsfw image is not allowed)
         </label>
       </div>
     </div>

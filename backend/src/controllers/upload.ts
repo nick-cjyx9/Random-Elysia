@@ -3,24 +3,65 @@ import jwt from '@elysiajs/jwt'
 import { getEnv } from '../utils/typedi'
 import { validateJWT } from './authed'
 
+// eslint-disable-next-line regexp/no-super-linear-backtracking
+const EMAIL_REGEX = /^(?:\s?(.*?)\s*<)?(.*?)>?$/
+
+function parseEmail(text: string) {
+  const [, name, email] = text.match(EMAIL_REGEX) || []
+  if (!email) {
+    throw new Error('Invalid email')
+  }
+  return { name, email }
+}
+
+function parseMultiEmail(email: string | string[]) {
+  return (Array.isArray(email) ? email : [email])
+    .flatMap(x => x.split(/,|;/).map(x => x.trim()))
+    .map(parseEmail)
+}
+
 async function sendSecurityMail(image: File, userid: string) {
-  // TODO
-  const data = btoa(String.fromCharCode(...new Uint8Array(await image.arrayBuffer())))
-  const base64 = `data:${image.type};base64,${data}`
-  const resp = await fetch('https://email.nickchen.top/api/sendEmail', {
+  // TODO detach these logics
+  // upload to a image host which only allows 1 download
+  const form = new FormData()
+  form.append('file', image)
+  // expires after 1 week
+  form.append('expires', (new Date(Date.now() + 24 * 60 * 60 * 7 * 1000)).toISOString())
+  form.append('maxDownloads', '1')
+  form.append('autoDelete', 'true')
+  const fileio_resp = await fetch('https://file.io/', {
     method: 'POST',
-    body: JSON.stringify([{
-      from: 'security@nickchen.top',
-      to: 'i@nickchen.top',
-      subject: 'Porn Image Detetcted',
-      bodyText: '',
-      bodyHtml: `user ${userid} has posted porn images to your site! <img src="${base64}" width=200/>`,
-    }]),
-    headers: {
-      Authorization: `SECRET ${getEnv().MAILFLARE_SECRET}`,
-    },
+    body: form,
+    headers: new Headers({
+      'accept': 'application/json',
+      'User-Agent': 'Elysia',
+    }),
   })
-  return resp.ok
+  const fileio_data: any = await fileio_resp.json()
+  const message = {
+    from: 'security@nickchen.top',
+    to: 'i@nickchen.top',
+    subject: 'Porn Image Detetcted',
+    bodyText: 'detected!',
+    bodyHtml: `user ${userid} has posted porn images to your site! Link: ${fileio_data.link}`,
+  }
+  const from = parseEmail(message.from)
+  const response = await fetch('https://api.mailchannels.net/tx/v1/send', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      subject: message.subject.trim(),
+      personalizations: [{ to: parseMultiEmail(message.to) }],
+      from,
+      content: [
+        message.bodyText && { type: 'text/plain', value: message.bodyText },
+        message.bodyHtml && { type: 'text/html', value: message.bodyHtml },
+      ].filter(x => !!x),
+    }),
+  }).catch(() => undefined)
+  return response?.ok
 }
 
 export default function handleUpload() {

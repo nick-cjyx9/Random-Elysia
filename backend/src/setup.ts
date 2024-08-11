@@ -75,6 +75,7 @@ export default function setup() {
       state: {
         async check(_ctx, _name, state) {
           const dbState = await db.select().from(states).where(eq(states.state, state))
+          db.delete(states).where(eq(states.state, state))
           if (dbState.length === 0)
             return false
           return true

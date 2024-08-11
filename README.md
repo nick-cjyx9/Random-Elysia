@@ -75,7 +75,11 @@ Novel and popular js runtime. All is well, but `bun add` is too slow that I can 
 
 ![slow-bun](./.readme/img/slow-bun.JPG)
 
-### Show your Support
+### AI porn detection
+
+We use Cloudflare AI's model to detect porn images. And the abuse will be immediately banned and sent to admin's email.
+
+## Show your Support
 
 Give a ⭐️ if this project helped you!
 
