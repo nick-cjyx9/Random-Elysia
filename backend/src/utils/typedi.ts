@@ -11,8 +11,8 @@ export interface Env {
   BGM_CLIENT_ID: string
   BGM_CLIENT_SECRET: string
   JWT_SECRET: string
-  BASE_URL: string
   FRONTEND_URL: string
+  MAILFLARE_SECRET: string
 }
 export const getEnv = () => Container.get<Env>('env')
 export const getDB = () => Container.get<DrizzleD1Database<typeof import('../db/schema')>>('DrizzleDB')

@@ -1,8 +1,9 @@
 # :schema node_modules/wrangler/config-schema.json
 name = "random_elysia"
-main = "src/index.ts"
+main = "./backend/src/index.ts"
 compatibility_date = "2023-05-18"
 node_compat = true
+pages_build_output_dir="./frontend/dist"
 
 [[d1_databases]]
 binding = "DB" # i.e. available in your Worker on env.DB
@@ -15,3 +16,10 @@ binding = "AI"
 [vars]
 SMMS_TOKEN = ""
 ACCOUNT_ID = ""
+JWT_SECRET = ""
+CLIENT_ID = ""
+CLIENT_SECRET = ""
+BGM_CLIENT_ID = ""
+BGM_CLIENT_SECRET = ""
+FRONTEND_URL = ""
+BASE_URL = ""

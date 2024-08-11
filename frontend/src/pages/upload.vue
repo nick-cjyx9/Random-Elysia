@@ -26,6 +26,11 @@ async function getFile(e: Event) {
       credentials: 'include',
     },
   })
+  if (!resp.data?.success) {
+    // eslint-disable-next-line no-alert
+    alert(resp.data?.message)
+    return
+  }
   uploadedData.value = resp.data
   uploading.value = false
   imageLink.value = resp.data.url as string

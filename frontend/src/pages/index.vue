@@ -10,11 +10,11 @@ const time: Ref<undefined | string> = ref()
 const tags: Ref<undefined | string[]> = ref()
 
 async function handleLike(id: number) {
-  client.item({ id }).like.post({
+  client.item({ id }).like.post({ options: {
     fetch: {
       credentials: 'include',
     },
-  }).then((resp) => {
+  } }).then((resp) => {
     if (resp.data?.success) {
       likes.value = resp.data?.data?.likes
     }
@@ -25,11 +25,11 @@ async function handleLike(id: number) {
 }
 
 async function handleDislike(id: number) {
-  client.item({ id }).dislike.post({
+  client.item({ id }).dislike.post({ options: {
     fetch: {
       credentials: 'include',
     },
-  }).then((resp) => {
+  } }).then((resp) => {
     if (resp.data?.success) {
       dislikes.value = resp.data?.data?.dislikes
     }
@@ -42,6 +42,7 @@ async function handleDislike(id: number) {
 function handleRefresh() {
   location.reload()
 }
+
 onMounted(async () => {
   // TODO: make a useFetch composable
   const { data } = await client.random.get()
