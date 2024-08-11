@@ -1,6 +1,7 @@
 import cors from '@elysiajs/cors'
 import Elysia from 'elysia'
 import setup from '../setup'
+import { getEnv } from '../utils/typedi'
 import handleAuthed from './authed'
 import handleUpload from './upload'
 import handleItem from './item'
@@ -11,7 +12,7 @@ export function app() {
   return new Elysia({ aot: false })
     .use(cors({
       aot: false,
-      origin: 'random-elysia.nickchen.top',
+      origin: getEnv().FRONTEND_URL,
       methods: '*',
       maxAge: 600,
       preflight: true,
