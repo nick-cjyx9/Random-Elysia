@@ -95,7 +95,7 @@ async function handleSubmit() {
       </div>
     </div>
   </div>
-  <div v-if="!previewLink" flex flex-col items-center py-2 space-y-2>
+  <div v-if="previewLink" flex flex-col items-center py-2 space-y-2>
     <h2 text-size-2xl font-serif>
       Step 2. Tag the image
     </h2>
