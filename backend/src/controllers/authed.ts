@@ -149,4 +149,8 @@ export default function handleAuthed() {
         },
       }
     })
+    .get('/logout', async ({ cookie: { verification } }) => {
+      verification?.remove()
+      return { success: true }
+    })
 }

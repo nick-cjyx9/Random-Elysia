@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "16a6bfdf-2de0-4e47-b796-c360030389cd",
+  "id": "540d6391-ecdb-4115-8adf-1f441bf59d5d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "images": {
@@ -61,7 +61,7 @@
         },
         "uid": {
           "name": "uid",
-          "type": "integer",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false

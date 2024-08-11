@@ -1,3 +1,4 @@
+<!-- eslint-disable no-alert -->
 <script setup lang="ts">
 import { client } from '~/main'
 
@@ -9,17 +10,31 @@ const time: Ref<undefined | string> = ref()
 const tags: Ref<undefined | string[]> = ref()
 
 async function handleLike(id: number) {
-  client.item({ id }).like.post().then((resp) => {
+  client.item({ id }).like.post({
+    fetch: {
+      credentials: 'include',
+    },
+  }).then((resp) => {
     if (resp.data?.success) {
       likes.value = resp.data?.data?.likes
+    }
+    else {
+      alert(resp.data?.message)
     }
   })
 }
 
 async function handleDislike(id: number) {
-  client.item({ id }).dislike.post().then((resp) => {
+  client.item({ id }).dislike.post({
+    fetch: {
+      credentials: 'include',
+    },
+  }).then((resp) => {
     if (resp.data?.success) {
       dislikes.value = resp.data?.data?.dislikes
+    }
+    else {
+      alert(resp.data?.message)
     }
   })
 }
@@ -40,13 +55,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div flex flex-col items-center justify-center space-y-4>
+  <div flex flex-col items-center justify-center>
     <h1 text-size-4xl font-500 font-serif>
       Random <font text-pink-4>
         Elysia
       </font><small text-size-xl>with weight</small>
     </h1>
-    <a href="/" hover:text-pink-4>🚀 click here to no-weight ver</a>
+    <a href="/" mb-4 hover:text-pink-4>🚀 click here to no-weight ver</a>
     <div v-if="img_link">
       <img :src="img_link" alt="random elysia" border-1 border-slate-5 rounded-md md:max-w-screen-md>
       <div h-4 w-full py-1 font-mono>

@@ -1,3 +1,4 @@
+<!-- eslint-disable no-alert -->
 <script setup lang="ts">
 import { client } from '~/main'
 
@@ -9,17 +10,31 @@ const time: Ref<undefined | string> = ref()
 const tags: Ref<undefined | string[]> = ref()
 
 async function handleLike(id: number) {
-  client.item({ id }).like.post().then((resp) => {
+  client.item({ id }).like.post({
+    fetch: {
+      credentials: 'include',
+    },
+  }).then((resp) => {
     if (resp.data?.success) {
       likes.value = resp.data?.data?.likes
+    }
+    else {
+      alert(resp.data?.message)
     }
   })
 }
 
 async function handleDislike(id: number) {
-  client.item({ id }).dislike.post().then((resp) => {
+  client.item({ id }).dislike.post({
+    fetch: {
+      credentials: 'include',
+    },
+  }).then((resp) => {
     if (resp.data?.success) {
       dislikes.value = resp.data?.data?.dislikes
+    }
+    else {
+      alert(resp.data?.message)
     }
   })
 }
@@ -27,26 +42,28 @@ async function handleDislike(id: number) {
 function handleRefresh() {
   location.reload()
 }
-
 onMounted(async () => {
+  // TODO: make a useFetch composable
   const { data } = await client.random.get()
-  id.value = data?.id
-  img_link.value = data?.link
-  likes.value = data?.likes
-  dislikes.value = data?.dislikes
-  time.value = data?.createdAt
-  tags.value = data?.tags?.split(',').filter((tag: string) => tag !== '')
+  nextTick(() => {
+    id.value = data?.id
+    img_link.value = data?.link
+    likes.value = data?.likes
+    dislikes.value = data?.dislikes
+    time.value = data?.createdAt
+    tags.value = data?.tags?.split(',').filter((tag: string) => tag !== '')
+  })
 })
 </script>
 
 <template>
-  <div flex flex-col items-center justify-center space-y-4>
+  <div flex flex-col items-center justify-center>
     <h1 text-size-4xl font-500 font-serif>
       Random <font text-pink-4>
         Elysia
       </font>
     </h1>
-    <a href="/dev" hover:text-pink-4>🚀 click here to weight-added ver</a>
+    <a href="/dev" mb-4 hover:text-pink-4>🚀 click here to weight-added ver</a>
     <div v-if="img_link">
       <img :src="img_link" alt="random elysia" border-1 border-slate-5 rounded-md md:max-w-screen-md>
       <div h-4 w-full py-1 font-mono>
@@ -57,7 +74,7 @@ onMounted(async () => {
           Published at: {{ (new Date(time as string)).toLocaleDateString() }}
         </p>
       </div>
-      <div mt-8 px-10 text-size-lg space-x-lg space-y-4>
+      <div mt-4 px-10 text-size-lg space-x-lg space-y-4>
         <button px-4 py-2 btn aria-label="like" @click="handleLike(id as number)">
           👍 Like {{ likes }}
         </button>

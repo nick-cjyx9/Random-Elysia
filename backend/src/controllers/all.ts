@@ -12,12 +12,15 @@ export function app() {
   return new Elysia({ aot: false })
     .use(cors({
       aot: false,
-      origin: getEnv().FRONTEND_URL,
+      origin: [getEnv().FRONTEND_URL, 'localhost:3333'],
       methods: '*',
       maxAge: 600,
       preflight: true,
       credentials: true,
     }))
+    .onRequest(({ set }) => {
+      set.headers['access-control-allow-credentials'] = 'true'
+    })
     .use(handleAuthed())
     .use(handleGetRandom())
     .use(handleGetTags())

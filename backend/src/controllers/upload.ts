@@ -20,11 +20,18 @@ export default function handleUpload() {
       const resp = await fetch(api_base, {
         method: 'POST',
         headers: {
-          Authorization: getEnv().SMMS_TOKEN as string,
+          'Authorization': getEnv().SMMS_TOKEN as string,
+          'User-Agent': 'Elysia',
         },
         body: data,
       })
       const resp_data: any = await resp.json()
+      if (resp_data.code === 'image_repeated') {
+        return {
+          success: false,
+          message: 'Image already exists',
+        }
+      }
       // https://doc.sm.ms/#api-Image-Upload
       return resp_data.data
     }, {

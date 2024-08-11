@@ -10,6 +10,13 @@ const user: Ref<{
   role: number
 } | undefined> = ref()
 
+async function handleLogout() {
+  await client.logout.get()
+  await fetch(user.value?.logout as string)
+  logged.value = false
+  user.value = undefined
+}
+
 onMounted(async () => {
   const profile = await client.profile.get({
     fetch: {
@@ -25,12 +32,9 @@ onMounted(async () => {
 
 <template>
   <div>
-    <div v-if="logged">
-      <img :src="user?.avatar" alt="avatar">
-      <span>{{ user?.username }}</span>
-      <span>{{ user?.role }}</span>
-      <span>{{ user?.id }}</span>
-      <a :href="user?.logout">Logout</a>
+    <div v-if="logged" space-x-1>
+      <span>you are logged as {{ user?.username }}</span>
+      <a btn @click="handleLogout()">Logout</a>
     </div>
     <div v-else space-x-3>
       <a href="https://random-elysia-api.nickchen.top/login/github" btn>Login with Github</a>

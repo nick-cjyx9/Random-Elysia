@@ -38,12 +38,15 @@ export default function handleItem() {
           if (!profile)
             return { success: false, message: 'Permission Denied' }
           if (profile.role === 0)
-            return await db.query.images.findMany()
-          return await db.query.images.findMany(
-            {
-              where: (images, { eq }) => (eq(images.uid, profile.id)),
-            },
-          )
+            return { success: true, data: await db.query.images.findMany() }
+          return {
+            success: true,
+            data: await db.query.images.findMany(
+              {
+                where: (images, { eq }) => (eq(images.uid, profile.id)),
+              },
+            ),
+          }
         })
         .delete('/:id', async ({ params: { id }, cookie: { verification }, jwt }) => {
           const profile = await validateJWT(verification?.value as string, jwt)

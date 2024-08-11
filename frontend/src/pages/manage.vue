@@ -9,18 +9,27 @@ const images: Ref<{
   dislikes: number
   tags: string | null
   createdAt: string
+  uid: string
 }[] | undefined | null> = ref()
 
 async function handleDelete(id: number) {
-  await client.item({ id }).delete()
+  await client.item({ id }).delete({
+    fetch: {
+      credentials: 'include',
+    },
+  })
   // eslint-disable-next-line no-alert
   alert('Deleted')
   location.reload()
 }
 
 onMounted(async () => {
-  const { data } = await client.item.getAll.get()
-  images.value = data
+  const resp = await client.item.getAll.get({
+    fetch: {
+      credentials: 'include',
+    },
+  })
+  images.value = resp.data?.data
 })
 </script>
 

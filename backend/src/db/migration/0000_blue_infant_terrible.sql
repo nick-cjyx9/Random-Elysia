@@ -6,7 +6,7 @@ CREATE TABLE `images` (
 	`dislikes` integer DEFAULT 0 NOT NULL,
 	`tags` text,
 	`created_at` text DEFAULT CURRENT_TIMESTAMP NOT NULL,
-	`uid` integer NOT NULL,
+	`uid` text NOT NULL,
 	FOREIGN KEY (`uid`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
