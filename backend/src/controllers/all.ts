@@ -9,7 +9,14 @@ import handleGetTags from './tag'
 
 export function app() {
   return new Elysia({ aot: false })
-    .use(cors({ aot: false }))
+    .use(cors({
+      aot: false,
+      origin: 'random-elysia.nickchen.top',
+      methods: '*',
+      maxAge: 600,
+      preflight: true,
+      credentials: true,
+    }))
     .use(handleAuthed())
     .use(handleGetRandom())
     .use(handleGetTags())

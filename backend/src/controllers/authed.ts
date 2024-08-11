@@ -42,7 +42,7 @@ export default function handleAuthed() {
       name: 'jwt',
       secret: getEnv().JWT_SECRET,
     }))
-    .get('/authed', async ({ authorized, tokenHeaders, profiles, cookie: { token }, jwt }) => {
+    .get('/authed', async ({ authorized, tokenHeaders, profiles, cookie: { token, verification }, jwt }) => {
       if (token === undefined || token.value === undefined)
         return 'Unauthorized'
       let message: IMessage | undefined
@@ -99,6 +99,13 @@ export default function handleAuthed() {
       else {
         message.role = db_user.role
       }
+      verification?.set({
+        value: await jwt.sign(message),
+        maxAge: 31536000,
+        path: '/',
+        httpOnly: true,
+        secure: true,
+      })
       const response = new Response(`
         <!DOCTYPE html>
         <html>
@@ -117,7 +124,7 @@ export default function handleAuthed() {
         statusText: 'OK',
         headers: new Headers({
           'Content-Type': 'text/html',
-          'Set-Cookie': `verification=${await jwt.sign(message)}; Domain=${getEnv().BASE_URL}; HttpOnly; Secure; SameSite=None; Max-Age=31536000;`,
+          // 'Set-Cookie': `verification=${await jwt.sign(message)}; Domain=${getEnv().BASE_URL}; Secure; Max-Age=31536000;`,
           'Location': getEnv().FRONTEND_URL,
         }),
       })
