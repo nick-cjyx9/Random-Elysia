@@ -2,7 +2,7 @@ import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 import { relations, sql } from 'drizzle-orm'
 
 export const users = sqliteTable('users', {
-  id: integer('id').unique(),
+  id: text('id').unique(),
   username: text('username').notNull(),
   avatar: text('avatar'),
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`).notNull(),
@@ -18,7 +18,11 @@ export const images = sqliteTable('images', {
   dislikes: integer('dislikes').notNull().default(0),
   tags: text('tags'),
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`).notNull(),
-  uid: integer('uid').references(() => users.id).notNull(),
+  uid: text('uid').references(() => users.id).notNull(),
+})
+
+export const states = sqliteTable('states', {
+  state: text('state').primaryKey().unique().notNull(),
 })
 
 export const usersRelations = relations(users, ({ many }) => ({
@@ -34,3 +38,4 @@ export const imageRelations = relations(images, ({ one }) => ({
 
 export type Image = typeof images.$inferSelect
 export type User = typeof users.$inferSelect
+export type State = typeof states.$inferSelect

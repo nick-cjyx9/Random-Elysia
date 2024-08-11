@@ -1,19 +1,20 @@
 import Elysia from 'elysia'
 import oauth2, { type TOAuth2AccessToken, type TOAuth2Provider } from '@bogeychan/elysia-oauth2'
-import { jwt } from '@elysiajs/jwt'
-// import jsonwebtoken from 'jsonwebtoken'
-import { getEnv } from './utils/typedi'
+import { eq } from 'drizzle-orm'
+import { getDB, getEnv } from './utils/typedi'
+import { states } from './db/schema'
 
-function randomBytes(size: number) {
-  const tmp = []
-  for (let i = 0; i < size; i++) {
-    tmp.push((Math.floor(Math.random() * 256)).toString(16))
+function generateRandomString(len: number) {
+  let text = ''
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  for (let i = 0; i < len; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length))
   }
-  return tmp.join('')
+  return text
 }
 
-const states = new Set()
 type ProfileName = 'bangumi' | 'github'
+// ! One use github to login might be logged as last bangumi user
 const globalToken: Record<ProfileName, TOAuth2AccessToken | null> = {
   bangumi: null,
   github: null,
@@ -21,6 +22,7 @@ const globalToken: Record<ProfileName, TOAuth2AccessToken | null> = {
 
 export default function setup() {
   const env = getEnv()
+  const db = getDB()
   function myGithub(): TOAuth2Provider {
     return {
       clientId: env.CLIENT_ID,
@@ -57,10 +59,6 @@ export default function setup() {
     }
   }
   return new Elysia({ aot: false })
-    .use(jwt({
-      name: 'token',
-      secret: env.JWT_SECRET,
-    }))
     .use(oauth2({
       host: 'random-elysia-api.nickchen.top',
       redirectTo: '/authed',
@@ -75,65 +73,32 @@ export default function setup() {
         },
       },
       state: {
-        check(_ctx, _name, state) {
-          if (states.has(state)) {
-            states.delete(state)
-            return true
-          }
-          else {
+        async check(_ctx, _name, state) {
+          const dbState = await db.select().from(states).where(eq(states.state, state))
+          if (dbState.length === 0)
             return false
-          }
+          return true
         },
-        generate(_ctx, _name) {
-          const state = randomBytes(8)
-          states.add(state)
+        async generate(_ctx, _name) {
+          const state = generateRandomString(12)
+          await db.insert(states).values({ state })
           return state
         },
       },
       storage: {
+        // TODO: storage in database
         get(_ctx, name) {
           return globalToken![name] as TOAuth2AccessToken
         },
-        set(_ctx, name, token) {
+        set(ctx, name, token) {
           globalToken![name] = token
+          ctx.cookie.token!.value = JSON.stringify(token)
+          ctx.cookie.token!.path = '/authed'
         },
         delete(_ctx, name) {
           globalToken![name] = null
         },
       },
-
-    }))
-    .get('/authed', async ({ authorized, tokenHeaders }) => {
-      if (await authorized('bangumi')) {
-        const resp = await fetch('https://api.bgm.tv/v0/me', {
-          headers: {
-            'Authorization': (await tokenHeaders('bangumi')).Authorization,
-            'User-Agent': 'Elysia',
-          },
-        })
-        const user: any = await resp.json()
-        return {
-          avatar: user.avatar.medium,
-          id: user.id,
-          username: user.username,
-        }
-      }
-      else if (await authorized('github')) {
-        const resp = await fetch('https://api.github.com/user', {
-          headers: {
-            'Authorization': (await tokenHeaders('github')).Authorization,
-            'User-Agent': 'Elysia',
-          },
-        })
-        const user: any = await resp.json()
-        return {
-          avatar: user.avatar_url,
-          id: user.id,
-          username: user.login,
-        }
-      }
-      else {
-        return 'Unauthorized'
-      }
-    })
+    }),
+    )
 }
