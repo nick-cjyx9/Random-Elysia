@@ -32,11 +32,12 @@ onMounted(async () => {
 
 <template>
   <div>
-    <div v-if="logged" space-x-1>
+    <div v-if="logged" space-x-1 space-y-2>
       <span>you are logged as {{ user?.username }}</span>
       <a btn @click="handleLogout()">Logout</a>
+      <a btn href="/manage">Your Images</a>
     </div>
-    <div v-else space-x-3>
+    <div v-else space-x-3 space-y-2>
       <a href="https://random-elysia-api.nickchen.top/login/github" btn>Login with Github</a>
       <a href="https://random-elysia-api.nickchen.top/login/bangumi" btn>Login with Bangumi</a>
     </div>

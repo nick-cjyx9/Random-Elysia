@@ -10,11 +10,11 @@ const time: Ref<undefined | string> = ref()
 const tags: Ref<undefined | string[]> = ref()
 
 async function handleLike(id: number) {
-  client.item({ id }).like.post({ options: {
+  client.item({ id }).like.post(null, {
     fetch: {
       credentials: 'include',
     },
-  } }).then((resp) => {
+  }).then((resp) => {
     if (resp.data?.success) {
       likes.value = resp.data?.data?.likes
     }
@@ -25,11 +25,11 @@ async function handleLike(id: number) {
 }
 
 async function handleDislike(id: number) {
-  client.item({ id }).dislike.post({ options: {
+  client.item({ id }).dislike.post(null, {
     fetch: {
       credentials: 'include',
     },
-  } }).then((resp) => {
+  }).then((resp) => {
     if (resp.data?.success) {
       dislikes.value = resp.data?.data?.dislikes
     }
