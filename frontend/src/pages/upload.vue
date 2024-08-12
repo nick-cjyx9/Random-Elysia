@@ -60,7 +60,12 @@ async function handleSubmit() {
   if (resp.data?.success) {
     // eslint-disable-next-line no-alert
     alert('Uploaded!')
-    location.reload()
+    file.value = undefined
+    tags.value = ''
+    previewLink.value = undefined
+    imageLink.value = undefined
+    uploadedData.value = undefined
+    submitting.value = false
   }
   else {
     // eslint-disable-next-line no-alert

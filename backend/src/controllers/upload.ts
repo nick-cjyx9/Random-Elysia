@@ -1,7 +1,7 @@
 import Elysia, { t } from 'elysia'
 import jwt from '@elysiajs/jwt'
 import { getEnv } from '../utils/typedi'
-import { validateJWT } from './authed'
+import { ICookie, validateJWT } from './oauth'
 
 // eslint-disable-next-line regexp/no-super-linear-backtracking
 const EMAIL_REGEX = /^(?:\s?(.*?)\s*<)?(.*?)>?$/
@@ -70,10 +70,11 @@ export default function handleUpload() {
       name: 'jwt',
       secret: getEnv().JWT_SECRET,
     }))
-    .post('/upload', async ({ body: { image }, cookie: { verification }, jwt }) => {
-      const profile = await validateJWT(verification?.value as string, jwt)
-      if (!profile || profile.role === 2)
-        return { success: false, message: 'Permission Denied' }
+    .post('/upload', async ({ body: { image }, cookie: { elysia_token, finger, user_role }, jwt }) => {
+      const role = (await jwt.verify(user_role.value) as any).role
+      if (role === 2)
+        return { success: false, message: 'You do not have permission to upload pictures.' }
+      const profile = await validateJWT(elysia_token.value, jwt, finger.value)
       const AI = getEnv().AI
       const desc = await AI.run('@cf/llava-hf/llava-1.5-7b-hf', {
         image: [...new Uint8Array(await image.arrayBuffer())],
@@ -82,7 +83,7 @@ if it is, give me "True".
 if it is NOT, give me "False".`,
       })
       if (desc.description.trim().toLowerCase() === 'true') {
-        const mail = await sendSecurityMail(image, profile.id)
+        const mail = await sendSecurityMail(image, profile.uid)
         return { success: false, message: 'Pornographic Artwork', mail }
       }
       const data = new FormData()
@@ -115,5 +116,6 @@ if it is NOT, give me "False".`,
         // multipart/form-data: body typed as t.Object, and is 1 level deep with t.File
         image: t.File({ type: 'image', maxSize: '5m', maxItems: 1 }),
       }),
+      cookie: ICookie,
     })
 }

@@ -39,8 +39,22 @@ async function handleDislike(id: number) {
   })
 }
 
-function handleRefresh() {
-  location.reload()
+async function handleRefresh() {
+  img_link.value = undefined
+  id.value = undefined
+  likes.value = undefined
+  dislikes.value = undefined
+  time.value = undefined
+  tags.value = undefined
+  const { data } = await client.random_by_weight.get()
+  nextTick(() => {
+    id.value = data?.id
+    img_link.value = data?.link
+    likes.value = data?.likes
+    dislikes.value = data?.dislikes
+    time.value = data?.createdAt
+    tags.value = data?.tags?.split(',').filter((tag: string) => tag !== '')
+  })
 }
 
 onMounted(async () => {
