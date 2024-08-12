@@ -19,7 +19,7 @@ export default function handleItem() {
           const profile = await validateJWT(elysia_token.value, jwt, finger.value)
           // not pretty good
           const role = (await jwt.verify(user_role.value) as any).role
-          if (role === 2)
+          if (role === '2')
             return { success: false, message: 'You do not have permission to upload pictures.' }
           const new_item = await db.insert(images).values({ uid: profile.uid, link, del_link, tags: tags.join(','), likes: 0, dislikes: 0 }).returning()
           return {
@@ -37,7 +37,7 @@ export default function handleItem() {
         .get('/getAll', async ({ cookie: { elysia_token, finger, user_role }, jwt }) => {
           const profile = await validateJWT(elysia_token.value, jwt, finger.value)
           const role = (await jwt.verify(user_role.value) as any).role
-          if (role === 0)
+          if (role === '0')
             return { success: true, data: await db.query.images.findMany() }
           return {
             success: true,
@@ -73,7 +73,7 @@ export default function handleItem() {
         })
         .post('/:id/like', async ({ params: { id }, cookie: { user_role }, jwt }) => {
           const role = (await jwt.verify(user_role.value) as any).role
-          if (role === 2)
+          if (role === '2')
             return { success: false, message: 'You do not have permission to like pictures.' }
           const like_item = await db.select().from(images).where(eq(images.id, id))
           if (!like_item[0])
@@ -89,7 +89,7 @@ export default function handleItem() {
         })
         .post('/:id/dislike', async ({ params: { id }, cookie: { user_role }, jwt }) => {
           const role = (await jwt.verify(user_role.value) as any).role
-          if (role === 2)
+          if (role === '2')
             return { success: false, message: 'You do not have permission to dislike pictures.' }
           const dislike_item = await db.select().from(images).where(eq(images.id, id))
           if (!dislike_item[0])

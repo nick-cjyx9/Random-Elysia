@@ -72,7 +72,7 @@ export default function handleUpload() {
     }))
     .post('/upload', async ({ body: { image }, cookie: { elysia_token, finger, user_role }, jwt }) => {
       const role = (await jwt.verify(user_role.value) as any).role
-      if (role === 2)
+      if (role === '2')
         return { success: false, message: 'You do not have permission to upload pictures.' }
       const profile = await validateJWT(elysia_token.value, jwt, finger.value)
       const AI = getEnv().AI
