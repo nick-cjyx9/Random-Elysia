@@ -2,11 +2,11 @@ import Elysia, { t } from 'elysia'
 import type { TOAuth2AccessToken } from '@bogeychan/elysia-oauth2'
 import oauth2 from '@bogeychan/elysia-oauth2'
 import { eq } from 'drizzle-orm'
-import jwt from 'jsonwebtoken'
 import SparkMD5 from 'spark-md5'
 import { jwt as elyJwt } from '@elysiajs/jwt'
+import jwt from '@tsndr/cloudflare-worker-jwt'
 import type { IProfileName } from '../utils/oauth2Providers'
-import { bangumi, myGithub, myLocalGithub } from '../utils/oauth2Providers'
+import { bangumi, local, myGithub } from '../utils/oauth2Providers'
 import { getDB, getEnv } from '../utils/typedi'
 import { states, users } from '../db/schema'
 import generateRandomString from '../utils/generateRandomString'
@@ -16,7 +16,7 @@ export async function getOAuthUser(name: IProfileName, access_token: string) {
     'Authorization': `Bearer ${access_token}`,
     'User-Agent': 'Elysia',
   })
-  if (name === 'bangumi') {
+  if (name === 'bangumi' || name === 'local') {
     const resp = await fetch('https://api.bgm.tv/v0/me', { headers })
     // https://github.com/bangumi/api/blob/master/docs-raw/How-to-Auth.md
     // https://bangumi.github.io/api/#/%E7%94%A8%E6%88%B7/getMyself
@@ -93,9 +93,9 @@ export function setupOAuth2() {
           // bangumi serverside not implemented
           scope: [],
         },
-        localGithub: {
-          provider: myLocalGithub(env),
-          scope: ['read:user'],
+        local: {
+          provider: local(env),
+          scope: [],
         },
       },
       state: {
@@ -133,6 +133,7 @@ export function setupOAuth2() {
           // ! once you lose your finger, you have to re-login
           const fingerPrint = SparkMD5.hash(ctx.cookie.finger.value)
           const { id, username, avatar } = await getOAuthUser(name, token.access_token)
+
           if (!id || !username || !avatar)
             throw new Error('Error when fetching github /user api')
           const dbUser = await db.query.users.findFirst({
@@ -140,6 +141,7 @@ export function setupOAuth2() {
           })
           if (!dbUser)
             await db.insert(users).values({ id, username, avatar, role: 1 })
+          // broken
           const payload = {
             uid: id,
             username,
@@ -148,7 +150,7 @@ export function setupOAuth2() {
             iat: Math.floor(Date.now() / 1000),
           }
           ctx.cookie.elysia_token?.set({
-            value: await jwt.sign(payload, env.JWT_SECRET, { expiresIn: token.expires_in }),
+            value: await jwt.sign(payload, env.JWT_SECRET),
             // TODO:Silently refresh user's access_token in /profile endpoint
             maxAge: token.expires_in,
             path: '/',
@@ -209,7 +211,7 @@ export default function handleAuth() {
       })
       return {
         success: true,
-        profile: dbUser,
+        data: dbUser,
       }
     }, { cookie: ICookie })
     // visit this endpoint to check your auth endpoints

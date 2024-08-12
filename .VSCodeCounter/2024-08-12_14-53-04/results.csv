@@ -1,0 +1,47 @@
+"filename", "language", "JavaScript", "Markdown", "JSON with Comments", "TypeScript", "JSON", "vue", "CSS", "HTML", "TOML", "comment", "blank", "total"
+"e:\dev\random_elysia\README.md", "Markdown", 0, 53, 0, 0, 0, 0, 0, 0, 0, 0, 36, 89
+"e:\dev\random_elysia\backend\package.json", "JSON", 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 1, 16
+"e:\dev\random_elysia\backend\src\controllers\all.ts", "TypeScript", 0, 0, 0, 29, 0, 0, 0, 0, 0, 1, 3, 33
+"e:\dev\random_elysia\backend\src\controllers\item.ts", "TypeScript", 0, 0, 0, 105, 0, 0, 0, 0, 0, 1, 2, 108
+"e:\dev\random_elysia\backend\src\controllers\oauth.ts", "TypeScript", 0, 0, 0, 193, 0, 0, 0, 0, 0, 16, 9, 218
+"e:\dev\random_elysia\backend\src\controllers\random.ts", "TypeScript", 0, 0, 0, 34, 0, 0, 0, 0, 0, 4, 2, 40
+"e:\dev\random_elysia\backend\src\controllers\tag.ts", "TypeScript", 0, 0, 0, 28, 0, 0, 0, 0, 0, 3, 2, 33
+"e:\dev\random_elysia\backend\src\controllers\upload.ts", "TypeScript", 0, 0, 0, 109, 0, 0, 0, 0, 0, 7, 6, 122
+"e:\dev\random_elysia\backend\src\db\schema.ts", "TypeScript", 0, 0, 0, 34, 0, 0, 0, 0, 0, 1, 7, 42
+"e:\dev\random_elysia\backend\src\index.ts", "TypeScript", 0, 0, 0, 17, 0, 0, 0, 0, 0, 1, 2, 20
+"e:\dev\random_elysia\backend\src\test\_index.test.ts", "TypeScript", 0, 0, 0, 65, 0, 0, 0, 0, 0, 0, 6, 71
+"e:\dev\random_elysia\backend\src\utils\generateRandomString.ts", "TypeScript", 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 1, 9
+"e:\dev\random_elysia\backend\src\utils\oauth2Providers.ts", "TypeScript", 0, 0, 0, 55, 0, 0, 0, 0, 0, 0, 4, 59
+"e:\dev\random_elysia\backend\src\utils\typedi.ts", "TypeScript", 0, 0, 0, 19, 0, 0, 0, 0, 0, 0, 2, 21
+"e:\dev\random_elysia\drizzle.config.ts", "TypeScript", 0, 0, 0, 15, 0, 0, 0, 0, 0, 1, 2, 18
+"e:\dev\random_elysia\eslint.config.mjs", "JavaScript", 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 5
+"e:\dev\random_elysia\frontend\README.vitesse.md", "Markdown", 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 32, 87
+"e:\dev\random_elysia\frontend\README.vitesse.zh-CN.md", "Markdown", 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 33, 88
+"e:\dev\random_elysia\frontend\auto-imports.d.ts", "TypeScript", 0, 0, 0, 575, 0, 0, 0, 0, 0, 8, 1, 584
+"e:\dev\random_elysia\frontend\components.d.ts", "TypeScript", 0, 0, 0, 9, 0, 0, 0, 0, 0, 5, 2, 16
+"e:\dev\random_elysia\frontend\eslint.config.js", "JavaScript", 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 9
+"e:\dev\random_elysia\frontend\index.html", "HTML", 0, 0, 0, 0, 0, 0, 0, 27, 0, 0, 1, 28
+"e:\dev\random_elysia\frontend\netlify.toml", "TOML", 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 3, 12
+"e:\dev\random_elysia\frontend\package.json", "JSON", 0, 0, 0, 0, 53, 0, 0, 0, 0, 0, 1, 54
+"e:\dev\random_elysia\frontend\shims.d.ts", "TypeScript", 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 2, 7
+"e:\dev\random_elysia\frontend\src\App.vue", "vue", 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 1, 8
+"e:\dev\random_elysia\frontend\src\components\README.md", "Markdown", 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 10
+"e:\dev\random_elysia\frontend\src\components\TheFooter.vue", "vue", 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 2, 16
+"e:\dev\random_elysia\frontend\src\components\UserBar.vue", "vue", 0, 0, 0, 0, 0, 41, 0, 0, 0, 0, 5, 46
+"e:\dev\random_elysia\frontend\src\composables\dark.ts", "TypeScript", 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 3
+"e:\dev\random_elysia\frontend\src\composables\index.ts", "TypeScript", 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 2
+"e:\dev\random_elysia\frontend\src\main.ts", "TypeScript", 0, 0, 0, 17, 0, 0, 0, 0, 0, 3, 4, 24
+"e:\dev\random_elysia\frontend\src\pages\README.md", "Markdown", 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 8, 21
+"e:\dev\random_elysia\frontend\src\pages\[...all].vue", "vue", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 1, 7
+"e:\dev\random_elysia\frontend\src\pages\dev.vue", "vue", 0, 0, 0, 0, 0, 96, 0, 0, 0, 1, 7, 104
+"e:\dev\random_elysia\frontend\src\pages\index.vue", "vue", 0, 0, 0, 0, 0, 99, 0, 0, 0, 1, 7, 107
+"e:\dev\random_elysia\frontend\src\pages\manage.vue", "vue", 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 5, 57
+"e:\dev\random_elysia\frontend\src\pages\upload.vue", "vue", 0, 0, 0, 0, 0, 155, 0, 0, 0, 0, 10, 165
+"e:\dev\random_elysia\frontend\src\styles\main.css", "CSS", 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 2, 12
+"e:\dev\random_elysia\frontend\tsconfig.json", "JSON with Comments", 0, 0, 31, 0, 0, 0, 0, 0, 0, 0, 1, 32
+"e:\dev\random_elysia\frontend\typed-router.d.ts", "TypeScript", 0, 0, 0, 16, 0, 0, 0, 0, 0, 9, 3, 28
+"e:\dev\random_elysia\frontend\uno.config.ts", "TypeScript", 0, 0, 0, 28, 0, 0, 0, 0, 0, 0, 2, 30
+"e:\dev\random_elysia\frontend\vite.config.ts", "TypeScript", 0, 0, 0, 53, 0, 0, 0, 0, 0, 8, 8, 69
+"e:\dev\random_elysia\package.json", "JSON", 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 1, 31
+"e:\dev\random_elysia\tsconfig.json", "JSON with Comments", 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 1, 26
+"Total", "-", 9, 181, 56, 1417, 98, 470, 10, 27, 9, 71, 239, 2587

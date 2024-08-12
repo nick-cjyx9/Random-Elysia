@@ -1,0 +1,94 @@
+Date : 2024-08-12 14:53:04
+Directory : e:\dev\random_elysia
+Total : 45 files,  2277 codes, 71 comments, 239 blanks, all 2587 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| TypeScript         |         22 |      1,417 |         68 |         72 |      1,557 |
+| vue                |          8 |        470 |          2 |         38 |        510 |
+| Markdown           |          5 |        181 |          0 |        114 |        295 |
+| JSON               |          3 |         98 |          0 |          3 |        101 |
+| JSON with Comments |          2 |         56 |          0 |          2 |         58 |
+| HTML               |          1 |         27 |          0 |          1 |         28 |
+| CSS                |          1 |         10 |          0 |          2 |         12 |
+| JavaScript         |          2 |          9 |          1 |          4 |         14 |
+| TOML               |          1 |          9 |          0 |          3 |         12 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                           | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                              |         45 |      2,277 |         71 |        239 |      2,587 |
+| . (Files)                                                      |          5 |        125 |          2 |         42 |        169 |
+| backend                                                        |         13 |        711 |         34 |         47 |        792 |
+| backend (Files)                                                |          1 |         15 |          0 |          1 |         16 |
+| backend\src                                                    |         12 |        696 |         34 |         46 |        776 |
+| backend\src (Files)                                            |          1 |         17 |          1 |          2 |         20 |
+| backend\src\controllers                                        |          6 |        498 |         32 |         24 |        554 |
+| backend\src\db                                                 |          1 |         34 |          1 |          7 |         42 |
+| backend\src\test                                               |          1 |         65 |          0 |          6 |         71 |
+| backend\src\utils                                              |          3 |         82 |          0 |          7 |         89 |
+| frontend                                                       |         27 |      1,441 |         35 |        150 |      1,626 |
+| frontend (Files)                                               |         13 |        923 |         30 |         91 |      1,044 |
+| frontend\src                                                   |         14 |        518 |          5 |         59 |        582 |
+| frontend\src (Files)                                           |          2 |         24 |          3 |          5 |         32 |
+| frontend\src\components                                        |          3 |         60 |          0 |         12 |         72 |
+| frontend\src\composables                                       |          2 |          3 |          0 |          2 |          5 |
+| frontend\src\pages                                             |          6 |        421 |          2 |         38 |        461 |
+| frontend\src\styles                                            |          1 |         10 |          0 |          2 |         12 |
++----------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                       | language           | code       | comment    | blank      | total      |
++----------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| e:\dev\random_elysia\README.md                                 | Markdown           |         53 |          0 |         36 |         89 |
+| e:\dev\random_elysia\backend\package.json                      | JSON               |         15 |          0 |          1 |         16 |
+| e:\dev\random_elysia\backend\src\controllers\all.ts            | TypeScript         |         29 |          1 |          3 |         33 |
+| e:\dev\random_elysia\backend\src\controllers\item.ts           | TypeScript         |        105 |          1 |          2 |        108 |
+| e:\dev\random_elysia\backend\src\controllers\oauth.ts          | TypeScript         |        193 |         16 |          9 |        218 |
+| e:\dev\random_elysia\backend\src\controllers\random.ts         | TypeScript         |         34 |          4 |          2 |         40 |
+| e:\dev\random_elysia\backend\src\controllers\tag.ts            | TypeScript         |         28 |          3 |          2 |         33 |
+| e:\dev\random_elysia\backend\src\controllers\upload.ts         | TypeScript         |        109 |          7 |          6 |        122 |
+| e:\dev\random_elysia\backend\src\db\schema.ts                  | TypeScript         |         34 |          1 |          7 |         42 |
+| e:\dev\random_elysia\backend\src\index.ts                      | TypeScript         |         17 |          1 |          2 |         20 |
+| e:\dev\random_elysia\backend\src\test\_index.test.ts           | TypeScript         |         65 |          0 |          6 |         71 |
+| e:\dev\random_elysia\backend\src\utils\generateRandomString.ts | TypeScript         |          8 |          0 |          1 |          9 |
+| e:\dev\random_elysia\backend\src\utils\oauth2Providers.ts      | TypeScript         |         55 |          0 |          4 |         59 |
+| e:\dev\random_elysia\backend\src\utils\typedi.ts               | TypeScript         |         19 |          0 |          2 |         21 |
+| e:\dev\random_elysia\drizzle.config.ts                         | TypeScript         |         15 |          1 |          2 |         18 |
+| e:\dev\random_elysia\eslint.config.mjs                         | JavaScript         |          2 |          1 |          2 |          5 |
+| e:\dev\random_elysia\frontend\README.vitesse.md                | Markdown           |         55 |          0 |         32 |         87 |
+| e:\dev\random_elysia\frontend\README.vitesse.zh-CN.md          | Markdown           |         55 |          0 |         33 |         88 |
+| e:\dev\random_elysia\frontend\auto-imports.d.ts                | TypeScript         |        575 |          8 |          1 |        584 |
+| e:\dev\random_elysia\frontend\components.d.ts                  | TypeScript         |          9 |          5 |          2 |         16 |
+| e:\dev\random_elysia\frontend\eslint.config.js                 | JavaScript         |          7 |          0 |          2 |          9 |
+| e:\dev\random_elysia\frontend\index.html                       | HTML               |         27 |          0 |          1 |         28 |
+| e:\dev\random_elysia\frontend\netlify.toml                     | TOML               |          9 |          0 |          3 |         12 |
+| e:\dev\random_elysia\frontend\package.json                     | JSON               |         53 |          0 |          1 |         54 |
+| e:\dev\random_elysia\frontend\shims.d.ts                       | TypeScript         |          5 |          0 |          2 |          7 |
+| e:\dev\random_elysia\frontend\src\App.vue                      | vue                |          7 |          0 |          1 |          8 |
+| e:\dev\random_elysia\frontend\src\components\README.md         | Markdown           |          5 |          0 |          5 |         10 |
+| e:\dev\random_elysia\frontend\src\components\TheFooter.vue     | vue                |         14 |          0 |          2 |         16 |
+| e:\dev\random_elysia\frontend\src\components\UserBar.vue       | vue                |         41 |          0 |          5 |         46 |
+| e:\dev\random_elysia\frontend\src\composables\dark.ts          | TypeScript         |          2 |          0 |          1 |          3 |
+| e:\dev\random_elysia\frontend\src\composables\index.ts         | TypeScript         |          1 |          0 |          1 |          2 |
+| e:\dev\random_elysia\frontend\src\main.ts                      | TypeScript         |         17 |          3 |          4 |         24 |
+| e:\dev\random_elysia\frontend\src\pages\README.md              | Markdown           |         13 |          0 |          8 |         21 |
+| e:\dev\random_elysia\frontend\src\pages\[...all].vue           | vue                |          6 |          0 |          1 |          7 |
+| e:\dev\random_elysia\frontend\src\pages\dev.vue                | vue                |         96 |          1 |          7 |        104 |
+| e:\dev\random_elysia\frontend\src\pages\index.vue              | vue                |         99 |          1 |          7 |        107 |
+| e:\dev\random_elysia\frontend\src\pages\manage.vue             | vue                |         52 |          0 |          5 |         57 |
+| e:\dev\random_elysia\frontend\src\pages\upload.vue             | vue                |        155 |          0 |         10 |        165 |
+| e:\dev\random_elysia\frontend\src\styles\main.css              | CSS                |         10 |          0 |          2 |         12 |
+| e:\dev\random_elysia\frontend\tsconfig.json                    | JSON with Comments |         31 |          0 |          1 |         32 |
+| e:\dev\random_elysia\frontend\typed-router.d.ts                | TypeScript         |         16 |          9 |          3 |         28 |
+| e:\dev\random_elysia\frontend\uno.config.ts                    | TypeScript         |         28 |          0 |          2 |         30 |
+| e:\dev\random_elysia\frontend\vite.config.ts                   | TypeScript         |         53 |          8 |          8 |         69 |
+| e:\dev\random_elysia\package.json                              | JSON               |         30 |          0 |          1 |         31 |
+| e:\dev\random_elysia\tsconfig.json                             | JSON with Comments |         25 |          0 |          1 |         26 |
+| Total                                                          |                    |      2,277 |         71 |        239 |      2,587 |
++----------------------------------------------------------------+--------------------+------------+------------+------------+------------+

@@ -6,13 +6,13 @@ const user: Ref<{
   avatar: string
   id: string
   username: string
-  logout: string
-  role: number
 } | undefined> = ref()
 
 async function handleLogout() {
   await client.logout.get()
-  await fetch(user.value?.logout as string)
+  // TODO
+  await fetch('https://random-elysia-api.nickchen.top/logout/bangumi')
+  await fetch('https://random-elysia-api.nickchen.top/logout/github')
   logged.value = false
   user.value = undefined
 }
