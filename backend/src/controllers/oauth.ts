@@ -203,7 +203,7 @@ export default function handleAuth() {
       // TODO: don't save role to single cookie
       user_role.set({
         // think twice
-        value: jwt.sign({ role: dbUser?.role || '1' }),
+        value: await jwt.sign({ role: dbUser?.role || '1' }),
         maxAge: 100 * 365 * 24 * 60 * 60,
         path: '/',
         httpOnly: true,
