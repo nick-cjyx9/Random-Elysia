@@ -1,5 +1,16 @@
-import { AnySQLiteColumn, foreignKey, integer, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core'
-import { sql } from 'drizzle-orm'
+import { integer, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core'
+
+export const users = sqliteTable('users', {
+  id: text('id'),
+  username: text('username').notNull(),
+  avatar: text('avatar'),
+  createdAt: text('created_at').default('sql`(CURRENT_TIMESTAMP)`').notNull(),
+  role: integer('role').default(1).notNull(),
+}, (table) => {
+  return {
+    idUnique: uniqueIndex('users_id_unique').on(table.id),
+  }
+})
 
 export const images = sqliteTable('images', {
   id: integer('id').primaryKey({ autoIncrement: true }).notNull(),
@@ -17,17 +28,5 @@ export const states = sqliteTable('states', {
 }, (table) => {
   return {
     stateUnique: uniqueIndex('states_state_unique').on(table.state),
-  }
-})
-
-export const users = sqliteTable('users', {
-  id: text('id'),
-  username: text('username').notNull(),
-  avatar: text('avatar'),
-  createdAt: text('created_at').default('sql`(CURRENT_TIMESTAMP)`').notNull(),
-  role: integer('role').default(1).notNull(),
-}, (table) => {
-  return {
-    idUnique: uniqueIndex('users_id_unique').on(table.id),
   }
 })
