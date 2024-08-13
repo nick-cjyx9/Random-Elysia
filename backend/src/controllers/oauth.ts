@@ -198,7 +198,7 @@ export default function handleAuth() {
         return { success: false, message: `Please login!` }
       }
       const dbUser = await db.query.users.findFirst({
-        where: (users, { eq }) => (eq(users.id, profile.uid)),
+        where: (users, { eq }) => (eq(users.id, profile?.uid)),
       })
       // TODO: don't save role to single cookie
       user_role.set({

@@ -3,16 +3,16 @@ import { client } from '~/main'
 
 const logged = ref(false)
 const user: Ref<{
-  avatar: string
-  id: string
-  username: string
+  avatar: string | null
+  id: string | null
+  username: string | null
 } | undefined> = ref()
 
 async function handleLogout() {
   await client.logout.get()
   // TODO
   await fetch('https://random-elysia-api.nickchen.top/logout/bangumi')
-  await fetch('https://random-elysia-api.nickchen.top/logout/github')
+  await fetch('https://random-elysia-api.nickchen.top/logout/github`')
   logged.value = false
   user.value = undefined
 }

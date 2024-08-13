@@ -30,7 +30,6 @@
     "@vue/test-utils": "^2.4.6",
     "eslint": "^9.8.0",
     "eslint-plugin-format": "^0.1.2",
-    "jsdom": "^24.1.1",
     "lint-staged": "^15.2.8",
     "pnpm": "^9.6.0",
     "simple-git-hooks": "^2.11.1",

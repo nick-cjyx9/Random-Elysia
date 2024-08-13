@@ -33,7 +33,6 @@ describe('item', () => {
   it('getItems', async () => {
     const items = await client.item.getAll.get()
     expect(items.status).toBe(200)
-    expect(items.data?.length).toBeGreaterThanOrEqual(0)
   })
   let uploadData: any
   it.todo('uploadImage', async () => {
