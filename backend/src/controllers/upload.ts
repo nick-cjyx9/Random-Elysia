@@ -23,8 +23,8 @@ async function sendSecurityMail(image: File, userid: string) {
   const fileio_data: any = await fileio_resp.json()
   const resend = new Resend(getEnv().RESEND_SECRET)
   const { data, error } = await resend.emails.send({
-    from: 'security@nickchen.top',
-    to: 'i@nickchen.top',
+    from: 'Nick <security@nickchen.top>',
+    to: ['i@nickchen.top'],
     subject: 'Porn Image Detetcted',
     html: `user ${userid} has posted porn images to your site! Link: ${fileio_data.link}`,
   })
