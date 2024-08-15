@@ -9,6 +9,7 @@
     "drizzle-orm": "^0.32.2",
     "elysia": "^1.1.5",
     "jsonwebtoken": "8.5.1",
+    "resend": "^3.5.0",
     "typedi": "^0.10.0"
   },
   "devDependencies": {

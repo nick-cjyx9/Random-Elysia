@@ -12,6 +12,7 @@ export interface Env {
   LOCAL_CLIENT_SECRET: string
   BGM_CLIENT_ID: string
   BGM_CLIENT_SECRET: string
+  RESEND_SECRET: string
   JWT_SECRET: string
   FRONTEND_URL: string
   BACKEND_URL: string

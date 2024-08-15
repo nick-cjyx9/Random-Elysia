@@ -1,27 +1,10 @@
 import Elysia, { t } from 'elysia'
 import jwt from '@elysiajs/jwt'
+import { Resend } from 'resend'
 import { getEnv } from '../utils/typedi'
 import { ICookie, validateJWT } from './oauth'
 
-// eslint-disable-next-line regexp/no-super-linear-backtracking
-const EMAIL_REGEX = /^(?:\s?(.*?)\s*<)?(.*?)>?$/
-
-function parseEmail(text: string) {
-  const [, name, email] = text.match(EMAIL_REGEX) || []
-  if (!email) {
-    throw new Error('Invalid email')
-  }
-  return { name, email }
-}
-
-function parseMultiEmail(email: string | string[]) {
-  return (Array.isArray(email) ? email : [email])
-    .flatMap(x => x.split(/,|;/).map(x => x.trim()))
-    .map(parseEmail)
-}
-
 async function sendSecurityMail(image: File, userid: string) {
-  // TODO detach these logics
   // upload to a image host which only allows 1 download
   const form = new FormData()
   form.append('file', image)
@@ -38,30 +21,16 @@ async function sendSecurityMail(image: File, userid: string) {
     }),
   })
   const fileio_data: any = await fileio_resp.json()
-  const message = {
+  const resend = new Resend(getEnv().RESEND_SECRET)
+  const { data, error } = await resend.emails.send({
     from: 'security@nickchen.top',
     to: 'i@nickchen.top',
     subject: 'Porn Image Detetcted',
-    bodyText: 'detected!',
-    bodyHtml: `user ${userid} has posted porn images to your site! Link: ${fileio_data.link}`,
-  }
-  const from = parseEmail(message.from)
-  const response = await fetch('https://api.mailchannels.net/tx/v1/send', {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      subject: message.subject.trim(),
-      personalizations: [{ to: parseMultiEmail(message.to) }],
-      from,
-      content: [
-        message.bodyText && { type: 'text/plain', value: message.bodyText },
-        message.bodyHtml && { type: 'text/html', value: message.bodyHtml },
-      ].filter(x => !!x),
-    }),
-  }).catch(() => undefined)
-  return response?.ok
+    html: `user ${userid} has posted porn images to your site! Link: ${fileio_data.link}`,
+  })
+  if (error)
+    throw error
+  return data?.id
 }
 
 export default function handleUpload() {
